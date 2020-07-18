@@ -1,0 +1,91 @@
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+  width: 400px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: 33% 33% 33%;
+  height: 100%;
+}
+
+/* .divider{
+  width:5px;
+  height:10px;
+  height:auto;
+  display:inline-block;
+} */
+
+quot {
+  background-color: rgb(116, 21, 21);
+  padding: 1em;
+}
+.card {
+  display: block;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 10px;
+  font-size: 200%;
+  font-weight: bold;
+  position: absolute;
+  height: 150px;
+  width: 90px; 
+  padding: 0px; 
+  transform-origin: 10% 90%;
+  transform: var(--rot) var(--translate);
+  left: 50%;
+  top: 20%;
+  outline: none;
+  transition: transform 10s;
+}
+
+.card_back {
+  background-image: url(back_card.jpg);
+  background-size: 85px 145px;
+  background-repeat: no-repeat;
+  background-position: left;
+  display: block;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 10px;
+  font-size: 200%;
+  font-weight: bold;
+  position: absolute;
+  height: 150px;
+  width: 90px; 
+  padding: 0px; 
+  transform-origin: 10% 90%;
+  left: 50%;
+  top: 20%;
+  outline: none;
+}
+
+@keyframes deal-hand {
+  from {
+    transform: rotate(0deg) var(--translate);
+  }
+  to {
+    transform: var(--rot) var(--translate);
+  }
+}
+
+@keyframes popup {
+  from {
+    transform: var(--rot) translate(0px, 0px);
+  }
+  to {
+    transform: var(--rot) var(--translate);
+  }
+}
+
+@keyframes popdown {
+  from {
+    transform: var(--rot) var(--translate);
+  }
+  to {
+    transform: var(--rot) translate(0px, 0px);
+  }
+}
