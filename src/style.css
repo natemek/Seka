@@ -1,15 +1,14 @@
-.grid {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  grid-gap: 10px;
-  padding: 10px;
-  width: 400px;
+.grid-item {
+  position: relative;
+  width: 100%;
 }
 
 .grid-container {
   display: grid;
-  grid-template-rows: 33% 33% 33%;
+  position: relative;
+  grid-template-rows: 32% 32% 32%;
   height: 100%;
+  width: 100%;
 }
 
 /* .divider{
@@ -61,6 +60,35 @@ quot {
   left: 50%;
   top: 20%;
   outline: none;
+}
+
+.card-content-top-left {
+  position: absolute; 
+  top: 5%; 
+  left: 5%; 
+  font-size: 16px;
+}
+.card-content-center {
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 32px;
+}
+.card-content-bottom-right{
+  position: absolute; 
+  top: 85%; 
+  left: 65%; 
+  font-size: 16px;
+}
+
+.drawing-deck {
+  position: absolute; 
+  top: 10%;
+  left: 50%; 
+  width: 45%; 
+  height: 100%; 
+  transform: translate(-50%,-10%);
 }
 
 @keyframes deal-hand {

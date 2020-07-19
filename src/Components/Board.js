@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import Card from './Card';
 import Player from './Player';
+import DrawingDeck from './DrawingDeck';
 
 const Board = props => {
 
   const [deckState, setDeckState] = useState([]);
   const [player1, setPlayer1] = useState([]);
   const [player2, setPlayer2] = useState([]);
+  const [turn, setTurn] = useState("player1")
+  const [discarded, setDiscarded] = useState([])
+
 
   const shuffleDeck = () => {
     let newDeck = [...deckState]
@@ -61,12 +64,47 @@ const Board = props => {
       setPlayer2(new_player)
     }
   }
+
+  const drawCard = () => {
+    let new_deck = [...deckState]
+    shuffle(new_deck)
+    if (turn === "player1" && player1.length > 0) {
+      let p1_hand = [...player1]
+      p1_hand.push(new_deck.pop())
+      setPlayer1(p1_hand)
+    } else if (turn === "player2" && player2.length > 0) {
+      let p2_hand = [...player2]
+      p2_hand.push(new_deck.pop())
+      setPlayer2(p2_hand)
+    } else if (player1.length === 0 || player2.length === 0) {
+      console.log("Can't draw a card with empty hand")
+    }
+    setDeckState(new_deck)
+  }
+
+  const discardCard = (index) => {
+    let new_discarded = [...discarded]
+    if (turn === "player1") {
+      let p1_hand = [...player1]
+      let discardedCard = p1_hand.splice(index,1)
+      new_discarded.push(discardedCard)
+      setPlayer1(p1_hand)
+      setTurn("player2")
+    } else if (turn === "player2") {
+      let p2_hand = [...player2]
+      let discardedCard = p2_hand.splice(index,1)
+      new_discarded.push(discardedCard)
+      setPlayer2(p2_hand)
+      setTurn("player1")
+    }
+    setDiscarded(new_discarded)
+  }
   
   return (
     <>
       <button onClick={() => shuffleDeck()}> S H U F F L E</button>
       <div className="grid-container">
-        <div style={{backgroundColor: 'DarkGrey', display: 'flex', position: 'relative'}}>
+        <div className="grid-item" style={{backgroundColor: 'DarkGrey'}}>
           <div 
             style={{
               position: 'absolute', 
@@ -75,30 +113,20 @@ const Board = props => {
               width: '45%', 
               height: '100%', 
               transform: 'translate(-50%,-10%)', 
-              backgroundColor:'CadetBlue',
-              marginBottom: '100%'
+              backgroundColor:'CadetBlue'
             }}>
             <button onClick={() => dealHand("player1")} >D E A L</button>
             <Player name= "player1" hand= {player1}/>
           </div>
         </div>
-        <div style={{backgroundColor: 'DarkGreen', position: 'relative'}}>
+        <div className="grid-item" style={{backgroundColor: 'DarkGreen'}}>
           2
-          <div 
-              style={{
-                position: 'absolute', 
-                top: '10%', 
-                left: '50%', 
-                width: '45%', 
-                height: '100%', 
-                transform: 'translate(-50%,-10%)', 
-                marginBottom: '100%'
-            }}
-          >
-            <Card name="card_back" rank="K" suit="❤" hidden={true}/>
+          <div >
+            {/* <Card name="card_back" rank="K" suit="❤" hidden={true}/> */}
+            <DrawingDeck deck= {deckState} handle_card_selected={() => drawCard()}/>
           </div>
         </div>
-        <div style={{backgroundColor: 'DarkGrey', position: 'relative'}}>
+        <div className="grid-item" style={{backgroundColor: 'DarkGrey'}}>
           <div 
               style={{
                 position: 'absolute', 
@@ -107,8 +135,7 @@ const Board = props => {
                 width: '45%', 
                 height: '100%', 
                 transform: 'translate(-50%,-10%)', 
-                backgroundColor:'CadetBlue',
-                marginBottom: '100%'
+                backgroundColor:'CadetBlue'
               }}>
               <button onClick={() => dealHand("player2")} >D E A L</button>
               <Player name= "player2" hand= {player2}/>
