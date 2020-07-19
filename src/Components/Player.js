@@ -29,7 +29,7 @@ const Player = props => {
   }, [props.hand])
 
   useEffect(() => {
-    const swap_cards2 = () => {
+    const swap_cards = () => {
       if (selectedCards.length === 2) {
         let i = hand.indexOf(selectedCards[0]) 
         let j = hand.indexOf(selectedCards[1])
@@ -52,7 +52,7 @@ const Player = props => {
       }
     }
     if (selectedCards.length === 2) {
-      swap_cards2(hand.indexOf(selectedCards[0]), hand.indexOf(selectedCards[1]))
+      swap_cards(hand.indexOf(selectedCards[0]), hand.indexOf(selectedCards[1]))
     }
   }, [selectedCards])
 
@@ -102,32 +102,21 @@ const Player = props => {
     );
   }
 
-  const swap_cards = () => {
-    if (selectedCards.length === 2) {
-      let i = hand.indexOf(selectedCards[0]) 
-      let j = hand.indexOf(selectedCards[1])
-      if (i < hand.length && j < hand.length && hand.length > 0) {
-        let new_hand = [...hand]
-        let temp = new_hand[i]
-        new_hand[i] = new_hand[j]
-        new_hand[j] = temp
-        hand[i].selected = false
-        hand[j].selected = false
-        setSelectedCards([])
-        setHand(new_hand)
-      } else if (hand.length < 1) {
-        console.log("Err: hand_count is empty")
-      } else {
-        console.log("Err: Cannot swap index out of bound")
-      }
+  // calls the discard method from Board
+  const handleDiscard = () => {
+    if ((props.turn === props.name) && (selectedCards.length === 1)) {
+      let new_hand = [...hand]
+      let index = new_hand.indexOf(selectedCards[0])
+      let removedCard = new_hand.splice(index,1)
+      setSelectedCards([])
     } else {
-      console.log("Err: Select two cards before swapping")
+      console.log("Err: you cannot discard when its not your turn or when you selected multiple cards")
     }
   }
 
   return (
     <>
-      <button onClick={() => {swap_cards()}} > S W A P </button>
+      <button onClick={() => {console.log("Discard clicked")}}> D I S C A R D</button>
       {props.name}
       {renderHand()}
     </>

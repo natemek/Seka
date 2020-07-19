@@ -105,18 +105,13 @@ const Board = props => {
       <button onClick={() => shuffleDeck()}> S H U F F L E</button>
       <div className="grid-container">
         <div className="grid-item" style={{backgroundColor: 'DarkGrey'}}>
-          <div 
-            style={{
-              position: 'absolute', 
-              top: '10%', 
-              left: '50%', 
-              width: '45%', 
-              height: '100%', 
-              transform: 'translate(-50%,-10%)', 
-              backgroundColor:'CadetBlue'
-            }}>
+          <div className="player-board">
             <button onClick={() => dealHand("player1")} >D E A L</button>
-            <Player name= "player1" hand= {player1}/>
+            <Player 
+              name="player1" 
+              hand={player1} 
+              turn={turn}
+              discardCard={(index) => discardCard(index)}/>
           </div>
         </div>
         <div className="grid-item" style={{backgroundColor: 'DarkGreen'}}>
@@ -127,18 +122,13 @@ const Board = props => {
           </div>
         </div>
         <div className="grid-item" style={{backgroundColor: 'DarkGrey'}}>
-          <div 
-              style={{
-                position: 'absolute', 
-                top: '10%', 
-                left: '50%', 
-                width: '45%', 
-                height: '100%', 
-                transform: 'translate(-50%,-10%)', 
-                backgroundColor:'CadetBlue'
-              }}>
+          <div className="player-board">
               <button onClick={() => dealHand("player2")} >D E A L</button>
-              <Player name= "player2" hand= {player2}/>
+              <Player 
+                name= "player2" 
+                hand= {player2} 
+                turn={turn}
+                discardCard={(index) => discardCard(index)}/>
             </div>
         </div>
       </div>

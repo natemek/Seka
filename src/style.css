@@ -30,8 +30,8 @@ quot {
   font-size: 200%;
   font-weight: bold;
   position: absolute;
-  height: 150px;
-  width: 90px; 
+  height: 140px;
+  width: 84px; 
   padding: 0px; 
   transform-origin: 10% 90%;
   transform: var(--rot) var(--translate);
@@ -43,7 +43,7 @@ quot {
 
 .card_back {
   background-image: url(back_card.jpg);
-  background-size: 85px 145px;
+  background-size: 79px 135px;
   background-repeat: no-repeat;
   background-position: left;
   display: block;
@@ -53,8 +53,8 @@ quot {
   font-size: 200%;
   font-weight: bold;
   position: absolute;
-  height: 150px;
-  width: 90px; 
+  height: 140px;
+  width: 84px; 
   padding: 0px; 
   transform-origin: 10% 90%;
   left: 50%;
@@ -89,6 +89,16 @@ quot {
   width: 45%; 
   height: 100%; 
   transform: translate(-50%,-10%);
+}
+
+.player-board {
+  position: absolute; 
+  top: 10%; 
+  left: 50%; 
+  width: 45%; 
+  height: 100%; 
+  transform: translate(-50%,-10%); 
+  background-color:CadetBlue;
 }
 
 @keyframes deal-hand {
