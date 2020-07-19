@@ -42,7 +42,14 @@ const Board = props => {
     let newDeck = []
     props.ranks.forEach(r => {
       props.suits.forEach(s => {
-        newDeck = [...newDeck, [r,s]]
+        let card = {
+          index: 0,
+          rank: r,
+          suit: s,
+          selected: false,
+          hidden: false
+        }
+        newDeck.push(card)
       })
     })
     setDeckState(newDeck)

@@ -7,24 +7,9 @@ const Player = props => {
 
   const [animatationState, setAminationState] = useState("none")
 
-  const set_hand_from_arr = (arr) => {
-    let new_hand = []
-    arr.forEach((c) => {
-      let card = {
-        index: 0,
-        rank: c[0],
-        suit: c[1],
-        selected: false,
-        hidden: false
-      }
-      new_hand.push(card)
-    })
-    return new_hand
-  }
-
   // acts like component did mount to re-render 
   useEffect(() => {
-    setHand(set_hand_from_arr(props.hand))
+    setHand(props.hand)
     setSelectedCards([])
   }, [props.hand])
 
