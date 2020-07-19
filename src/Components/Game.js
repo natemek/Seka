@@ -24,7 +24,7 @@ const Game = () => {
   })
 
   return (
-    <div className="parent-div" style={{height: '100vh'}}>
+    <div className="parent-div" style={{height: '95vh', width: '95vw', position: 'relative'}}>
       <Board suits= {gameState.suits} ranks= {gameState.ranks}/>
       
     </div>

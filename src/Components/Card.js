@@ -41,11 +41,31 @@ const Card = props => {
     }
   }
 
-  const check_class_name= () => {
+  const check_class_name = () => {
     if (props.hidden) {
       return "card_back"
     } else {
       return "card"
+    }
+  }
+
+  const check_big_font_size = () => {
+    if (props.rank === "10" && props.suit === "❤") {
+      return "20px"
+    } else if (props.suit === "❤") {
+      return "28px"
+    } else {
+      return "32px"
+    }
+  }
+
+  const check_small_font_size = () => {
+    if (props.rank === "10" && props.suit === "❤") {
+      return "13px"
+    } else if (props.suit === "❤") {
+      return "14px"
+    } else {
+      return "16px"
     }
   }
 
@@ -71,13 +91,13 @@ const Card = props => {
         check_translate()
       }}
       >
-        <div style={{position: 'absolute', top: '5%', left: '5%', fontSize: '16px'}}>
+        <div className="card-content-top-left" style={{fontSize: check_small_font_size()}}>
           {check_hidden()}
         </div>
-        <div style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '32px'}}>
+        <div className="card-content-center"  style={{fontSize: check_big_font_size()}}>
           {check_hidden()}
         </div>
-        <div style={{position: 'absolute', top: '85%', left: '65%', fontSize: '16px'}}>
+        <div className="card-content-bottom-right" style={{fontSize: check_small_font_size()}}>
           {check_hidden()}
         </div>
     </button>
