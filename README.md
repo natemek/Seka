@@ -22,6 +22,11 @@
 - [ ] Add a combination checker in board
   - [ ] Add checkTris
   - [ ] Add checkQuatris
-- [ ] Add a turn checker
+- [x] Add a turn checker
   - [x] Add a state to keep track of the players turn
-  - [ ] Add a display to show whose turn
+  - [x] Add a display to show whose turn
+
+## Suggetions
+
+- [x] Change the board deck ds from 2d array to arr of card objects
+- [ ] Remove player hand state and use props

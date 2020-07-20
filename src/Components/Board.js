@@ -75,51 +75,89 @@ const Board = props => {
   const drawCard = () => {
     let new_deck = [...deckState]
     shuffle(new_deck)
-    if (turn === "player1" && player1.length > 0) {
+    if (turn === "player1" && player1.length === 10) {
       let p1_hand = [...player1]
       p1_hand.push(new_deck.pop())
       setPlayer1(p1_hand)
-    } else if (turn === "player2" && player2.length > 0) {
+    } else if (turn === "player2" && player2.length === 10) {
       let p2_hand = [...player2]
       p2_hand.push(new_deck.pop())
       setPlayer2(p2_hand)
-    } else if (player1.length === 0 || player2.length === 0) {
-      console.log("Can't draw a card with empty hand")
+    } else if (player1.length !== 10 || player2.length !== 10) {
+      console.log("Can't draw a card with empty hand or excess cards in hand")
     }
     setDeckState(new_deck)
   }
 
-  const discardCard = (index) => {
+  const discardCard = (name, index) => {
     let new_discarded = [...discarded]
-    if (turn === "player1") {
-      let p1_hand = [...player1]
-      let discardedCard = p1_hand.splice(index,1)
+    let playerHand = []
+    if (name === "player1" && turn === name) {
+      playerHand = [...player1]
+    } else if (name === "player2" && turn === name) {
+      playerHand = [...player2]
+    } else {
+      console.log("It is not your turn")
+      return
+    }
+    
+    if (playerHand.length === 11) {
+      let discardedCard = playerHand.splice(index,1)
       new_discarded.push(discardedCard)
-      setPlayer1(p1_hand)
+    } else {
+      console.log("Err: you can only discard after you draw")
+      return
+    }
+
+    if (name === "player1") {
+      setPlayer1(playerHand)
       setTurn("player2")
-    } else if (turn === "player2") {
-      let p2_hand = [...player2]
-      let discardedCard = p2_hand.splice(index,1)
-      new_discarded.push(discardedCard)
-      setPlayer2(p2_hand)
+    } else if (name === "player2") {
+      setPlayer2(playerHand)
       setTurn("player1")
     }
     setDiscarded(new_discarded)
   }
   
+  const swapHandCards = (name, index1, index2) => {
+    let playerHand = []
+    if (name === "player1") {
+      playerHand = [...player1]
+    } else if (name === "player2") {
+      playerHand = [...player2]
+    }
+
+    if (index1 < playerHand.length && index2 < playerHand.length && playerHand.length > 0) {
+      let temp = playerHand[index1]
+      playerHand[index1] = playerHand[index2]
+      playerHand[index2] = temp
+      playerHand[index1].selected = false
+      playerHand[index2].selected = false
+      if (name === "player1") {
+        setPlayer1(playerHand)
+      } else if (name === "player2") {
+        setPlayer2(playerHand)
+      }
+    } else if (playerHand.length < 1) {
+      console.log("Err: hand_count is empty")
+    } else {
+      console.log("Err: Cannot swap index out of bound")
+    }
+  }
+
   return (
     <>
       <button onClick={() => shuffleDeck()}> S H U F F L E</button>
       <div className="grid-container">
         <div className="grid-item" style={{backgroundColor: 'DarkGrey'}}>
-          <div className="player-board">
-            <button onClick={() => dealHand("player1")} >D E A L</button>
-            <Player 
-              name="player1" 
-              hand={player1} 
-              turn={turn}
-              discardCard={(index) => discardCard(index)}/>
-          </div>
+          <button onClick={() => dealHand("player1")} >D E A L</button>
+          <Player 
+            name="player1" 
+            hand={player1} 
+            turn={turn}
+            setHand={(new_hand) => setPlayer1(new_hand)}
+            swapHandCards={(name, index1, index2) => swapHandCards(name, index1, index2)}
+            discardCard={(name, index) => discardCard(name, index)}/>
         </div>
         <div className="grid-item" style={{backgroundColor: 'DarkGreen'}}>
           2
@@ -129,14 +167,14 @@ const Board = props => {
           </div>
         </div>
         <div className="grid-item" style={{backgroundColor: 'DarkGrey'}}>
-          <div className="player-board">
-              <button onClick={() => dealHand("player2")} >D E A L</button>
-              <Player 
-                name= "player2" 
-                hand= {player2} 
-                turn={turn}
-                discardCard={(index) => discardCard(index)}/>
-            </div>
+          <button onClick={() => dealHand("player2")} >D E A L</button>
+          <Player 
+            name= "player2" 
+            hand= {player2} 
+            turn={turn}
+            setHand={(new_hand) => setPlayer2(new_hand)}
+            swapHandCards={(name, index1, index2) => swapHandCards(name, index1, index2)}
+            discardCard={(name, index) => discardCard(name, index)}/>
         </div>
       </div>
     </>
