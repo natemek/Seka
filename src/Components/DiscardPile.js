@@ -10,10 +10,10 @@ const DiscardPile = (props) => {
   const renderDiscardPile = () => {
     
     const ListCards = ({deck}) => (
-      <div className="player">
+      <div className="middle-card">
         {deck.map((card, index) => (
           <Card 
-            name={"card"} //rot is used to calulate the rotation of a card in hand
+            name={"card"}
             key={index} 
             id={index} 
             rank={card.rank} 
@@ -32,7 +32,7 @@ const DiscardPile = (props) => {
   }
 
   return(
-    <div className="middle-deck">
+    <div className="discard-deck">
       {renderDiscardPile()}
     </div>
   )

@@ -6,7 +6,7 @@ const DrawingDeck = (props) => {
   const renderDrawingDeck = () => {
     
     const ListCards = ({deck}) => (
-      <div className="player">
+      <div className="middle-card">
         {deck.map((card, index) => (
           <Card 
             name={"card"} 

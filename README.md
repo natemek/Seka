@@ -15,6 +15,7 @@
 - [x] Adding a Deck in the middle
   - [x] Figure out the data structure
   - [x] Add drawing a card functionality
+  - [x] Add a discarded pile
   - [ ] Add animation for drawing the card
 - [x] Adding a backface for the cards  
   1. get the design
@@ -29,4 +30,4 @@
 ## Suggetions
 
 - [x] Change the board deck ds from 2d array to arr of card objects
-- [ ] Remove player hand state and use props
+- [x] Remove player hand state and use props

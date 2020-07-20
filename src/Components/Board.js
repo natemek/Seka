@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Player from './Player';
 import DrawingDeck from './DrawingDeck';
+import DiscardPile from './DiscardPile';
 
 const Board = props => {
 
@@ -56,6 +57,15 @@ const Board = props => {
   }, [props]
   )
 
+  useEffect(() => {
+    if (deckState.length === 0 && discarded.length > 0) {
+      let new_discarded = [...discarded]
+      let top = new_discarded.pop()
+      setDeckState(shuffle(new_discarded))
+      setDiscarded([top])
+    }
+  }, [discarded, deckState])
+
   const dealHand = (name) => {
     if ((name === "player1" && player1.length > 0) || (name === "player2" && player2.length > 0)) {
       return
@@ -103,7 +113,8 @@ const Board = props => {
     
     if (playerHand.length === 11) {
       let discardedCard = playerHand.splice(index,1)
-      new_discarded.push(discardedCard)
+      discardedCard[0].selected = false
+      new_discarded.push(discardedCard[0])
     } else {
       console.log("Err: you can only discard after you draw")
       return
@@ -160,10 +171,9 @@ const Board = props => {
             discardCard={(name, index) => discardCard(name, index)}/>
         </div>
         <div className="grid-item" style={{backgroundColor: 'DarkGreen'}}>
-          2
-          <div >
-            {/* <Card name="card_back" rank="K" suit="❤" hidden={true}/> */}
-            <DrawingDeck deck= {deckState} handle_card_selected={() => drawCard()}/>
+          <div style={{position: 'absolute', transform: 'translateX(-50%)', height: '80%', width: '30%', left: '50%'}}>
+            <DrawingDeck deck={deckState} handle_card_selected={() => drawCard()}/>
+            <DiscardPile deck={discarded}/>
           </div>
         </div>
         <div className="grid-item" style={{backgroundColor: 'DarkGrey'}}>

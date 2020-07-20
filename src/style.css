@@ -84,18 +84,28 @@ quot {
 
 .drawing-deck {
   position: absolute; 
+  /* background-color: azure; */
   top: 10%;
   left: 50%; 
-  width: 45%; 
+  width: 50%; 
   height: 100%; 
-  transform: translate(-50%,-10%);
+  transform: translate(0%,-10%);
+}
+
+.discard-deck {
+  position: absolute;
+  /* background-color: aqua; */
+  top: 10%;
+  width: 50%;
+  height: 100%;
+  transform: translate(0%,-10%);
 }
 
 .player-board {
   position: absolute; 
   top: 10%; 
   left: 50%; 
-  width: 45%; 
+  width: 50%; 
   height: 98%; 
   transform: translate(-50%,-10%); 
   background-color:CadetBlue;
