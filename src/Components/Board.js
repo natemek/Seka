@@ -159,7 +159,6 @@ const Board = props => {
 
   return (
     <>
-      <button onClick={() => shuffleDeck()}> S H U F F L E</button>
       <div className="grid-container">
         <div className="grid-item" style={{backgroundColor: 'DarkGrey'}}>
           <button onClick={() => dealHand("player1")} >D E A L</button>

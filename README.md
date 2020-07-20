@@ -1,5 +1,11 @@
 # Card Game
 
+## Local Start Up Guide
+
+1. clone repository
+2. `npm install`
+3. `npm start`
+
 ## Progress
 
 - [x] Spread hand view css
