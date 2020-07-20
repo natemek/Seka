@@ -57,6 +57,7 @@ const Board = props => {
   }, [props]
   )
 
+  // Recycle the cards when the drawing card runs out
   useEffect(() => {
     if (deckState.length === 0 && discarded.length > 0) {
       let new_discarded = [...discarded]
