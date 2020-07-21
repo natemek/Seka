@@ -20,7 +20,7 @@ const DiscardPile = (props) => {
             suit={card.suit}
             hidden={false}
             selected={card.selected}
-            handle_card_selected={(index) => handle_card_selected(index)}/>
+            handle_card_selected={(index) => props.handle_card_selected(index)}/>
         ))}
       </div>
     );

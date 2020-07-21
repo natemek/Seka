@@ -85,7 +85,7 @@ const Board = props => {
 
   const drawCard = () => {
     let new_deck = [...deckState]
-    shuffle(new_deck)
+    // shuffle(new_deck)
     if (turn === "player1" && player1.length === 10) {
       let p1_hand = [...player1]
       p1_hand.push(new_deck.pop())
@@ -98,6 +98,24 @@ const Board = props => {
       console.log("Can't draw a card with empty hand or excess cards in hand")
     }
     setDeckState(new_deck)
+  }
+
+  const drawFromDiscarded = () => {
+    let new_discarded = [...discarded]
+    let playerHand = []
+    if (turn === "player1" && player1.length === 10) {
+      playerHand = [...player1]
+      playerHand.push(new_discarded.pop())
+      setPlayer1(playerHand)
+    } else if (turn === "player2" && player2.length === 10) {
+      playerHand = [...player2]
+      playerHand.push(new_discarded.pop())
+      setPlayer2(playerHand)
+    } else {
+      console.log("Can't draw a card with empty hand or excess cards in hand")
+      return
+    }
+    setDiscarded(new_discarded)
   }
 
   const discardCard = (name, index) => {
@@ -173,7 +191,7 @@ const Board = props => {
         <div className="grid-item" style={{backgroundColor: 'DarkGreen'}}>
           <div style={{position: 'absolute', transform: 'translateX(-50%)', height: '80%', width: '30%', left: '50%'}}>
             <DrawingDeck deck={deckState} handle_card_selected={() => drawCard()}/>
-            <DiscardPile deck={discarded}/>
+            <DiscardPile deck={discarded} handle_card_selected={() => drawFromDiscarded()}/>
           </div>
         </div>
         <div className="grid-item" style={{backgroundColor: 'DarkGrey'}}>
