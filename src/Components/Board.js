@@ -36,7 +36,6 @@ const Board = props => {
     props.ranks.forEach(r => {
       props.suits.forEach(s => {
         let card = {
-          index: 0,
           rank: r,
           suit: s,
           selected: false,

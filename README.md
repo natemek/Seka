@@ -26,9 +26,15 @@
 - [x] Adding a backface for the cards  
   1. get the design
   2. add it to hide the opponent hand
-- [ ] Add a combination checker in board
-  - [ ] Add checkTris
-  - [ ] Add checkQuatris
+- [ ] Add a combination checker
+  - [x] Add checkTris
+  - [x] Add checkQuatris
+  - [ ] Improve check function performance
+- [ ] Deal the result once a player successfully goes out
+  - [ ] Hide the hand of winner player
+  - [ ] Create a component that overlaps player that shows the winning combination
+  - [ ] Add a conffetti display
+  - [ ] Add a reset and restart buttons
 - [x] Add a turn checker
   - [x] Add a state to keep track of the players turn
   - [x] Add a display to show whose turn

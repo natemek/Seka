@@ -77,25 +77,93 @@ const Player = props => {
   }
 
   const handleGoingOut = () => {
-    // check tris
     let handCopy = [...props.hand]
-    checkTris(handCopy)
+    let quatris = []
+    let tris = []
     // check quatris
+    checkQuatris(handCopy, quatris)
+    // check tris
+    checkTris(handCopy, tris)
     // check if one card remaining and discard it
     // WIN conffetti and reset game
+    console.log("+++++++++++++++\n")
+    console.log("tris:", tris)
+    console.log("quatris", quatris)
+    console.log("discard:", handCopy)
   }
 
-  const checkTris = (handCopy) => {
-    let tris = []
-    // for (let i = 0; i < handCopy.length; i++) {
-    //   for (let j = i; i < handCopy.length; j++) {
-    //     for (let k = j; j < handCopy.length; k++) {
-    //       if (0){
-    //         console.log()
-    //       }
-    //     }
-    //   }
-    // }
+  const checkQuatris = (handCopy, quatris) => {
+    let indexToRemove = []
+    console.log("Checking Quatris...")
+    for (let i = 0; i < handCopy.length && !(quatris.length); i++) { //  && !(quatris.length) => check if one quatris is found and return
+      for (let j = i+1; j < handCopy.length && !(quatris.length); j++) {
+        for (let k = j+1; k < handCopy.length && !(quatris.length); k++) {
+          for (let l = k+1; l < handCopy.length && !(quatris.length); l++) {
+            let suits = [handCopy[i].suit, handCopy[j].suit, handCopy[k].suit, handCopy[l].suit]
+            if ((handCopy[i].rank === handCopy[j].rank) && (handCopy[j].rank === handCopy[k].rank) && 
+                  (handCopy[k].rank === handCopy[l].rank)) {
+              if (suits.indexOf('s') !== -1 &&
+                  suits.indexOf('d') !== -1 &&
+                  suits.indexOf('c') !== -1 &&
+                  suits.indexOf('h') !== -1) {
+                    quatris.push([handCopy[i], handCopy[j], handCopy[k], handCopy[l]])
+                    indexToRemove.push(i,j,k,l)
+              }
+            } else if (suits.every((i => i === suits[0]))) {
+              let ranks = [handCopy[i].rank, handCopy[j].rank, handCopy[k].rank, handCopy[l].rank]
+              ranks.sort((a,b) => (a > b) ? 1 : -1)
+              console.log(ranks)
+              if ((ranks[0] + 1 === ranks[1]) && (ranks[1] + 1 === ranks[2]) && (ranks[2] + 1 === ranks[3])) {
+                quatris.push([handCopy[i], handCopy[j], handCopy[k], handCopy[l]])
+                indexToRemove.push(i,j,k,l)
+                break;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // remove the elms from array
+    for (let i = indexToRemove.length - 1; i >= 0; i--) {
+      handCopy.splice(indexToRemove[i],1)
+    }
+
+    console.log(quatris)
+    console.log(handCopy)
+  }
+
+  const checkTris = (handCopy, tris) => {
+    let indexToRemove = []
+    console.log("Checking Tris...")
+    for (let i = 0; i < handCopy.length; i++) {
+      for (let j = i+1; j < handCopy.length; j++) {
+        for (let k = j+1; k < handCopy.length; k++) {
+          if ((handCopy[i].rank === handCopy[j].rank) && (handCopy[j].rank === handCopy[k].rank)) {
+            if ((handCopy[i].suit !== handCopy[j].suit) && 
+                (handCopy[i].suit !== handCopy[k].suit) && 
+                (handCopy[j].suit !== handCopy[k].suit)) {
+                  tris.push([handCopy[i], handCopy[j], handCopy[k]])
+                  indexToRemove.push(i,j,k)
+            }
+          } else if ((handCopy[i].suit === handCopy[j].suit) && (handCopy[j].suit === handCopy[k].suit)) {
+            let ranks = [handCopy[i], handCopy[j], handCopy[k]]
+            ranks.sort((a,b) => (a.rank > b.rank) ? 1 : -1)
+            if ((ranks[0].rank + 1 === ranks[1].rank) && (ranks[1].rank + 1 === ranks[2].rank)) {
+              tris.push([handCopy[i], handCopy[j], handCopy[k]])
+              indexToRemove.push(i,j,k)
+            }
+          }
+        }
+      }
+    }
+
+    // remove the elms from array
+    for (let i = indexToRemove.length - 1; i >= 0; i--) {
+      handCopy.splice(indexToRemove[i],1)
+    }
+
+    console.log(tris)
     console.log(handCopy)
   }
 
