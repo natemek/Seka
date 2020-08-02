@@ -7,7 +7,7 @@ const Card = props => {
   }
 
   const check_color = () => {
-    if (props.suit === "❤" || props.suit === "♦") {
+    if (props.suit === "h" || props.suit === "d") {
       return "red"
     }
   }
@@ -26,18 +26,31 @@ const Card = props => {
     return 'translate(0px,0px)'
   }
 
-  const check_animation = () => {
-    if (props.selected) {
-      return "popup"
-    }
-    return "popdown"
-  }
-
   const check_hidden = () => {
     if (props.hidden) {
       return null
     } else {
-      return props.rank + props.suit
+      return check_rank() + convert_suit()
+    }
+  }
+
+  const convert_suit = () => {
+    switch (props.suit) {
+      case "d": return "♦"
+      case "h": return "❤"
+      case "s": return "♠"
+      case "c": return "♣"
+      default: return ""
+    }
+  }
+
+  const check_rank = () => {
+    switch (props.rank) {
+      case 1: return "A"
+      case 11: return "J"
+      case 12: return "Q"
+      case 13: return "K"
+      default: return props.rank
     }
   }
 
@@ -52,7 +65,7 @@ const Card = props => {
   const check_big_font_size = () => {
     if (props.rank === "10" && props.suit === "❤") {
       return "20px"
-    } else if (props.suit === "❤") {
+    } else if (props.suit === "h") {
       return "28px"
     } else {
       return "32px"
@@ -60,9 +73,9 @@ const Card = props => {
   }
 
   const check_small_font_size = () => {
-    if (props.rank === "10" && props.suit === "❤") {
+    if (props.rank === "10" && props.suit === "h") {
       return "13px"
-    } else if (props.suit === "❤") {
+    } else if (props.suit === "h") {
       return "14px"
     } else {
       return "16px"

@@ -3,10 +3,6 @@ import Card from './Card';
 
 const DiscardPile = (props) => {
 
-  const handle_card_selected = () => {
-    return console.log("Discard Card Selected")
-  }
-
   const renderDiscardPile = () => {
     
     const ListCards = ({deck}) => (

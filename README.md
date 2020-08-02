@@ -37,3 +37,4 @@
 
 - [x] Change the board deck ds from 2d array to arr of card objects
 - [x] Remove player hand state and use props
+- [x] Change the ranks to numbers and the suits to letters

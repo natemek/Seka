@@ -11,14 +11,6 @@ const Board = props => {
   const [turn, setTurn] = useState("player1")
   const [discarded, setDiscarded] = useState([])
 
-
-  const shuffleDeck = () => {
-    let newDeck = [...deckState]
-    newDeck = shuffle(newDeck)
-    console.log("Shuffled")
-    setDeckState(newDeck)
-  }
-
   // Fisher-Yates shuffle algorithm
   const shuffle = (array) => {
     var currentIndex = array.length, temporaryValue, randomIndex;

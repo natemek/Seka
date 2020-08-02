@@ -5,8 +5,6 @@ const Player = props => {
   // const [hand, setHand] = useState([])
   const [selectedCards, setSelectedCards] = useState([])
 
-  const [animatationState, setAminationState] = useState("none")
-
   // acts like component did mount to re-render 
   // useEffect(() => {
   //   setHand(props.hand)
@@ -18,7 +16,7 @@ const Player = props => {
       props.swapHandCards(props.name, props.hand.indexOf(selectedCards[0]), props.hand.indexOf(selectedCards[1]))
       setSelectedCards([])
     }
-  }, [selectedCards])
+  }, [selectedCards, props])
 
   // This func will be used for rearragnging player's hand
   const handle_card_selected = (index) => {
@@ -54,7 +52,6 @@ const Player = props => {
             suit={card.suit}
             hidden={card.hidden}
             selected={card.selected}
-            animate={animatationState}
             handle_card_selected={(index) => handle_card_selected(index)}/>
         ))}
       </div>
@@ -79,6 +76,29 @@ const Player = props => {
     }
   }
 
+  const handleGoingOut = () => {
+    // check tris
+    let handCopy = [...props.hand]
+    checkTris(handCopy)
+    // check quatris
+    // check if one card remaining and discard it
+    // WIN conffetti and reset game
+  }
+
+  const checkTris = (handCopy) => {
+    let tris = []
+    // for (let i = 0; i < handCopy.length; i++) {
+    //   for (let j = i; i < handCopy.length; j++) {
+    //     for (let k = j; j < handCopy.length; k++) {
+    //       if (0){
+    //         console.log()
+    //       }
+    //     }
+    //   }
+    // }
+    console.log(handCopy)
+  }
+
   const check_turn = () => {
     if (props.turn === props.name) {
       return "#dc5331"
@@ -88,6 +108,7 @@ const Player = props => {
   return (
     <div className="player-board" style={{borderColor: check_turn()}}>
       <button onClick={() => handleDiscard()}> D I S C A R D</button>
+      <button onClick={() => handleGoingOut()}>G O I N G - O U T</button>
       {props.name}
       {renderHand()}
     </div>
