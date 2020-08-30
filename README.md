@@ -9,7 +9,7 @@
 ## Progress
 
 - [x] Spread hand view css
-- [x] Add appropriate grid for board
+- [ ] Add appropriate grid for board
   - [x] Use a placeholder grid
 - [ ] Adding a swap functionality to rearrange cards on hand  
   - [x] Add card pop up feature when clicked
