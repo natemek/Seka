@@ -1,0 +1,141 @@
+.grid-item {
+  position: relative;
+  width: 100%;
+}
+
+.grid-container {
+  display: grid;
+  position: relative;
+  grid-template-rows: 32% 32% 32%;
+  height: 100%;
+  width: 100%;
+}
+
+/* .divider{
+  width:5px;
+  height:10px;
+  height:auto;
+  display:inline-block;
+} */
+
+quot {
+  background-color: rgb(116, 21, 21);
+  padding: 1em;
+}
+.card {
+  display: block;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 10px;
+  font-size: 200%;
+  font-weight: bold;
+  position: absolute;
+  height: 140px;
+  width: 84px; 
+  padding: 0px; 
+  transform-origin: 10% 90%;
+  transform: var(--rot) var(--translate);
+  left: 50%;
+  top: 20%;
+  outline: none;
+  transition: transform 10s;
+}
+
+.card_back {
+  background-image: url(back_card-min.jpg);
+  background-size: 79px 135px;
+  background-repeat: no-repeat;
+  background-position: left;
+  display: block;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 10px;
+  font-size: 200%;
+  font-weight: bold;
+  position: absolute;
+  height: 140px;
+  width: 84px; 
+  padding: 0px; 
+  transform-origin: 10% 90%;
+  left: 50%;
+  top: 20%;
+  outline: none;
+}
+
+.card-content-top-left {
+  position: absolute; 
+  top: 5%; 
+  left: 5%; 
+  font-size: 16px;
+}
+.card-content-center {
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 32px;
+}
+.card-content-bottom-right{
+  position: absolute; 
+  top: 85%; 
+  left: 65%; 
+  font-size: 16px;
+}
+
+.drawing-deck {
+  position: absolute; 
+  /* background-color: azure; */
+  top: 10%;
+  left: 50%; 
+  width: 50%; 
+  height: 100%; 
+  transform: translate(0%,-10%);
+}
+
+.discard-deck {
+  position: absolute;
+  /* background-color: aqua; */
+  top: 10%;
+  width: 50%;
+  height: 100%;
+  transform: translate(0%,-10%);
+}
+
+.player-board {
+  position: absolute; 
+  top: 10%; 
+  left: 50%; 
+  width: 50%; 
+  height: 98%; 
+  transform: translate(-50%,-10%); 
+  background-color:CadetBlue;
+  border-color: CadetBlue;
+  border-style: solid;
+}
+
+@keyframes deal-hand {
+  from {
+    transform: rotate(0deg) var(--translate);
+  }
+  to {
+    transform: var(--rot) var(--translate);
+  }
+}
+
+@keyframes popup {
+  from {
+    transform: var(--rot) translate(0px, 0px);
+  }
+  to {
+    transform: var(--rot) var(--translate);
+  }
+}
+
+@keyframes popdown {
+  from {
+    transform: var(--rot) var(--translate);
+  }
+  to {
+    transform: var(--rot) translate(0px, 0px);
+  }
+}

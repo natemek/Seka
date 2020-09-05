@@ -85,9 +85,6 @@ const Player = props => {
     // check tris
     checkTris(handCopy, tris)
     // check if one card remaining and discard it
-    if (handCopy.length === 1) {
-      // discard the remaining 
-    }
     // WIN conffetti and reset game
     console.log("+++++++++++++++\n")
     console.log("tris:", tris)
@@ -115,7 +112,7 @@ const Player = props => {
             } else if (suits.every((i => i === suits[0]))) {
               let ranks = [handCopy[i].rank, handCopy[j].rank, handCopy[k].rank, handCopy[l].rank]
               ranks.sort((a,b) => (a > b) ? 1 : -1)
-              console.log(ranks)
+              // console.log(ranks)
               if ((ranks[0] + 1 === ranks[1]) && (ranks[1] + 1 === ranks[2]) && (ranks[2] + 1 === ranks[3])) {
                 quatris.push([handCopy[i], handCopy[j], handCopy[k], handCopy[l]])
                 indexToRemove.push(i,j,k,l)
