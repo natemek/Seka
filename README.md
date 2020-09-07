@@ -8,6 +8,13 @@
 
 ## Progress
 
+### Stage 2
+
+- [ ] Add a pop up screen in the beginning that asks for player name
+- [ ] After the user entered the player name, another pop up with players online to send a request to play together
+
+### Stage 1
+
 - [x] Spread hand view css
 - [ ] Add appropriate grid for board
   - [x] Use a placeholder grid
