@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Player from './Player';
 import DrawingDeck from './DrawingDeck';
 import DiscardPile from './DiscardPile';
+import WelcomeModal from './WelcomeModal';
 
 const Board = props => {
 
@@ -168,6 +169,7 @@ const Board = props => {
 
   return (
     <>
+      <WelcomeModal/>
       <div className="grid-container">
         <div className="grid-item" style={{backgroundColor: 'DarkGrey'}}>
           <button onClick={() => dealHand("player1")} >D E A L</button>

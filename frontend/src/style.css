@@ -9,6 +9,8 @@
   grid-template-rows: 32% 32% 32%;
   height: 100%;
   width: 100%;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
 }
 
 /* .divider{
@@ -111,6 +113,35 @@ quot {
   background-color:CadetBlue;
   border-color: CadetBlue;
   border-style: solid;
+}
+
+.modal{
+  z-index:3;
+  display:block;
+  padding-top:100px;
+  position:fixed;
+  left:50%;
+  top:40%;
+  transform: translate(-50%, -50%);
+  width:40%;
+  height:25%;
+  overflow:auto;
+  background-color:rgba(8, 61, 139);
+  border-radius: 25px;
+  overflow-x: hidden;
+}
+
+.modal-container{
+  padding:0.01em 16px;
+  position: absolute;
+}
+
+.modal-header{
+  padding:0.01em 24px;
+  position: absolute;
+  top: 0;
+  background-color: aliceblue;
+  width: 92%;
 }
 
 @keyframes deal-hand {
