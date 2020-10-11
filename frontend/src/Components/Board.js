@@ -169,7 +169,7 @@ const Board = props => {
 
   return (
     <>
-      <WelcomeModal/>
+      {/* <WelcomeModal/> */}
       <div className="grid-container">
         <div className="grid-item" style={{backgroundColor: 'DarkGrey'}}>
           <button onClick={() => dealHand("player1")} >D E A L</button>

@@ -7,10 +7,10 @@ const WelcomeModal = props => {
         <h2>SEKA MULTIPLAYER</h2>
       </header>
       <div class="modal-container">
-      <form action="">
-        <label for="fname">player name:</label>
-        <input type="text" id="pname" name="pname"/>
-      </form>
+        <form action="">
+          <label for="fname">player name:</label>
+          <input type="text" id="pname" name="pname"/>
+        </form>
       </div>
     </div>
   );

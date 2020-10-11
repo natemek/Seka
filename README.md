@@ -1,10 +1,11 @@
-# Card Game
+# Seka
 
 ## Local Start Up Guide
 
 1. clone repository
-2. `npm install`
-3. `npm start`
+2. cd Seka/frontend
+3. `npm install`
+4. `npm start`
 
 ## Progress
 

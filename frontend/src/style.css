@@ -9,8 +9,8 @@
   grid-template-rows: 32% 32% 32%;
   height: 100%;
   width: 100%;
-  -webkit-filter: blur(2px);
-  filter: blur(2px);
+  /* -webkit-filter: blur(2px);
+  filter: blur(2px); */
 }
 
 /* .divider{
