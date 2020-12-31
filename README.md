@@ -9,6 +9,14 @@
 
 ## Progress
 
+### Stage  3: Socket
+
+- **on connection** welcome Seka
+- **on connection** add to available players
+- When availble players becomes 2, queue up the game
+- **on gameStarted** server: send deck and dealt playing card | client: take cards and set as player deck and draying deck
+- **on turn** server: send either player1 or player2 | client: set the turn hook accordingly
+
 ### Stage 2
 
 - [ ] Add a modal in the beginning that asks for player name
